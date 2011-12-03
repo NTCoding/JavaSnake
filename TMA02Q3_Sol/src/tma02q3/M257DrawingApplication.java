@@ -5,6 +5,7 @@
 package tma02q3;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -21,8 +22,8 @@ public class M257DrawingApplication extends JFrame
 {
     // instance variables provided
 
-    private final int FRAME_WIDTH = 500;
-    private final int FRAME_HEIGHT = 500;
+    private final int FRAME_WIDTH = 550;
+    private final int FRAME_HEIGHT = 550;
     private DrawingPanel drawingPanel;
 
     // TODO add further instance variables as required
@@ -55,6 +56,7 @@ public class M257DrawingApplication extends JFrame
     private void setInitialFrameAppearance()
     {
          drawingPanel.setBorder(new SnakeBorder());
+         drawingPanel.setBackground(new Color(218, 188, 230));
     }
 
 
