@@ -5,10 +5,13 @@
 package tma02q3;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.border.Border;
 
 /**
  *
@@ -41,9 +44,19 @@ public class M257DrawingApplication extends JFrame
 
         // given exiting on close
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         //TODO add registering of any event handlers here
 
+        // ----------- My Code ---------- //
+        setInitialFrameAppearance();
+
     }
+
+    private void setInitialFrameAppearance()
+    {
+         drawingPanel.setBorder(new SnakeBorder());
+    }
+
 
     //These methods should only be called after the frame is visible.
     //They tell you about the available width and height in the frame
