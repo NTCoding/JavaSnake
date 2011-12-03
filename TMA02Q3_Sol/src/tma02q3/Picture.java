@@ -80,8 +80,17 @@ public class Picture
         int y = this.getY();
         
         SnakeBuilder builder = this.getSnakeBuilder();
-        Polygon head = builder.getUpwardFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
-        
+
+        Polygon head = null;
+        if (this.getDirection().equals(UP))
+        {
+            head = builder.getUpwardFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
+        }
+        if (this.getDirection().equals(DOWN))
+        {
+            head = builder.getDownwardFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
+        }
+
         g.fillPolygon(head);
 
         return head;
