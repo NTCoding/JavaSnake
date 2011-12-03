@@ -154,11 +154,16 @@ public class Picture
 
     void move()
     {
-        this.setY(this.getY() + this.getStepDistance());
+        this.setY(this.getY() - this.getStepDistance());
     }
 
     private int getStepDistance()
     {
         return this.stepDistance;
+    }
+
+    public int getTotalLength()
+    {
+        return this.getHeadHeight() + this.getTailLength();
     }
 }

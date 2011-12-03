@@ -71,7 +71,7 @@ public class M257DrawingApplication extends JFrame
         //and change the picture
         //this involves updating the content of the drawingPanel
         // by calling the panel's updatePictureState method
-         while(true)
+        while(true)
         {
             Thread.sleep(1000);
             drawingPanel.moveSnake();
@@ -108,8 +108,8 @@ public class M257DrawingApplication extends JFrame
 
         private void setSnakeStartPosition()
         {
-            int xPos = getMargin() + getBorderWidth() + 40;
-            int yPos = xPos;
+            int xPos =  this.getMargin() + this.getBorderWidth() + 40;
+            int yPos = this.getHeight() - this.getMargin() - this.getBorderWidth() - this.getSnake().getTotalLength() - 5;
             this.getSnake().setPosition(xPos, yPos);
         }
 
