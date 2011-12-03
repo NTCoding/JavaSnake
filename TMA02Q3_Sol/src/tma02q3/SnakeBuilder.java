@@ -5,6 +5,7 @@
 
 package tma02q3;
 
+import java.awt.Point;
 import java.awt.Polygon;
 
 /**
@@ -37,5 +38,15 @@ public class SnakeBuilder
 
         return head;
     }
+
+     public Polygon getForwardsTail(Point startPoint, int halfTailWidth, int tailWidth, int tailLength)
+     {
+        Polygon tail = new Polygon();
+        tail.addPoint(startPoint.x - halfTailWidth, startPoint.y);
+        tail.addPoint(startPoint.x - halfTailWidth, startPoint.y + tailLength);
+        tail.addPoint(startPoint.x + tailWidth, startPoint.y + tailLength);
+        tail.addPoint(startPoint.x + tailWidth, startPoint.y);
+        return tail;
+     }
 
 }

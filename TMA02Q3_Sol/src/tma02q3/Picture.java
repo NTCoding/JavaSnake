@@ -51,8 +51,6 @@ public class Picture
         //TODO complete
     }
 
-
-
     //TODO add updatePictureState method
     //parameters can be removed/changed if required
     //This method does not do any drawing - it changes the state of the
@@ -101,12 +99,12 @@ public class Picture
         Point startPoint = getCentreOfBaseOfHead();
         int tailWidth = this.getTailWidth();
         int halfTailWidth = this.getTailWidth() / 2;
-        
-        Polygon tail = new Polygon();
-        tail.addPoint(startPoint.x - halfTailWidth, startPoint.y);
-        tail.addPoint(startPoint.x - halfTailWidth, startPoint.y + this.getTailLength());
-        tail.addPoint(startPoint.x + tailWidth, startPoint.y + this.getTailLength());
-        tail.addPoint(startPoint.x + tailWidth, startPoint.y);
+
+        Polygon tail = null;
+        if (this.getDirection().equals(UP))
+        {
+           tail = this.getSnakeBuilder().getForwardsTail(startPoint, halfTailWidth, tailWidth, this.getTailLength());
+        }
 
         g.fillPolygon(tail);
 
