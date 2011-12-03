@@ -17,17 +17,21 @@ import javax.swing.border.Border;
  */
 public class SnakeBorder implements Border
 {
-
-    public SnakeBorder()
+    final int margin;
+    final int pixelWidth;
+    public SnakeBorder(int margin, int pixelWidth)
     {
+        this.margin = margin;
+        this.pixelWidth = pixelWidth;
     }
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height)
     {
         Color color = new Color(70, 21, 89);
+
         
-        drawThickRectangle(g, color, 10, 20, width, height);
+        drawThickRectangle(g, color, getPixelWidth(), getMargin(), width, height);
     }
 
     private void drawThickRectangle(Graphics g, Color color, int pixels, int margin, int width, int height)
@@ -51,4 +55,13 @@ public class SnakeBorder implements Border
        return false;
     }
 
+    private int getPixelWidth()
+    {
+        return this.pixelWidth;
+    }
+
+    private int getMargin()
+    {
+        return this.margin;
+    }
 }

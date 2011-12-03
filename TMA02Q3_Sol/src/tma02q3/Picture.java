@@ -42,6 +42,10 @@ public class Picture
     public void draw(Graphics g)
     {
         //TODO complete
+
+        // draw tip of head at starting coordinates
+
+        // draw tail going backwards
     }
     //TODO add further methods here if required - up to you!
 }
