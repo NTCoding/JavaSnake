@@ -40,6 +40,7 @@ public class Picture
 
     private String direction = UP;
 
+    SnakeBuilder builder = new SnakeBuilder();
 
     //TODO complete constructor
     public Picture(int width, int height)
@@ -49,6 +50,8 @@ public class Picture
 
         //TODO complete
     }
+
+
 
     //TODO add updatePictureState method
     //parameters can be removed/changed if required
@@ -75,13 +78,10 @@ public class Picture
         int headBaseWidth = this.getHeadBaseWidth();
         int x = this.getX();
         int y = this.getY();
-
-        Polygon head = new Polygon();
-        head.addPoint(x, y);
-        head.addPoint(x - headTipWidth, y);
-        head.addPoint(x - headBaseWidth, y + headHeight);
-        head.addPoint(x + headBaseWidth, y + headHeight);
-        head.addPoint(x + headTipWidth, y);
+        
+        SnakeBuilder builder = this.getSnakeBuilder();
+        Polygon head = builder.getUpwardFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
+        
         g.fillPolygon(head);
 
         return head;
@@ -231,5 +231,10 @@ public class Picture
     private void setDirection(String direction)
     {
         this.direction = direction;
+    }
+
+    private SnakeBuilder getSnakeBuilder()
+    {
+        return this.builder;
     }
 }
