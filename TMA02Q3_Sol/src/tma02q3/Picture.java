@@ -33,6 +33,13 @@ public class Picture
     private int tailWidth = 6;
     private int stepDistance = 4;
 
+    private final String UP = "up";
+    private final String DOWN = "down";
+    private final String LEFT = "left";
+    private final String RIGHT = "right";
+
+    private String direction = UP;
+
 
     //TODO complete constructor
     public Picture(int width, int height)
@@ -56,7 +63,6 @@ public class Picture
     public void draw(Graphics g)
     {
         //TODO complete
-
         g.setColor(Color.DARK_GRAY);
         g.drawPolygon(getSnakeHead(g));
         g.drawPolygon(getSnakeTail(g));
@@ -165,5 +171,30 @@ public class Picture
     public int getTotalLength()
     {
         return this.getHeadHeight() + this.getTailLength();
+    }
+
+    public void goUp()
+    {
+        this.setDirection(UP);
+    }
+
+    public void goDown()
+    {
+        this.setDirection(DOWN);
+    }
+
+    public void goLeft()
+    {
+        this.setDirection(LEFT);
+    }
+
+    public void goRight()
+    {
+        this.setDirection(RIGHT);
+    }
+
+    private void setDirection(String direction)
+    {
+        this.direction = direction;
     }
 }

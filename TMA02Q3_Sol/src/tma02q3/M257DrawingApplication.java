@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -48,6 +50,7 @@ public class M257DrawingApplication extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //TODO add registering of any event handlers here
+        this.addKeyListener(new KeyListener(drawingPanel.getSnake()));
     }
 
     
@@ -152,4 +155,44 @@ public class M257DrawingApplication extends JFrame
         }
     }
     //TODO add further (inner) classes as required
+
+    private class KeyListener extends KeyAdapter
+    {
+        private Picture snake;
+
+        public KeyListener(Picture snake)
+        {
+            this.snake = snake;
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e)
+        {
+            if (e.getKeyCode() == KeyEvent.VK_UP)
+            {
+                this.getSnake().goUp();
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            {
+                this.getSnake().goDown();
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            {
+                this.getSnake().goLeft();
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            {
+                this.getSnake().goRight();
+            }
+        }
+
+        private Picture getSnake()
+        {
+            return this.snake;
+        }
+
+    }
 }
