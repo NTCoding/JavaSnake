@@ -26,8 +26,7 @@ public class M257DrawingApplication extends JFrame
     private final int FRAME_HEIGHT = 550;
     private DrawingPanel drawingPanel;
 
-    private final int margin = 20;
-    private final int borderWidth = 10;
+   
     // TODO add further instance variables as required
     /**
      * Creates a new instance of M257DrawingApplication
@@ -50,23 +49,10 @@ public class M257DrawingApplication extends JFrame
 
         //TODO add registering of any event handlers here
 
-        // ----------- My Code ---------- //
-        setInitialFrameAppearance();
-        setSnakeStartPosition();
+       
 
     }
-
-    private void setInitialFrameAppearance()
-    {
-         drawingPanel.setBorder(new SnakeBorder(getMargin(), getBorderWidth()));
-         drawingPanel.setBackground(new Color(218, 188, 230));
-    }
-
-    private void setSnakeStartPosition()
-    {
-        // margin + borderwidth + 10
-
-    }
+    
     //These methods should only be called after the frame is visible.
     //They tell you about the available width and height in the frame
     private int getAvailableWidth()
@@ -89,16 +75,6 @@ public class M257DrawingApplication extends JFrame
         // by calling the panel's updatePictureState method
     }
 
-     private int getMargin()
-     {
-         return this.margin;
-     }
-
-     private int getBorderWidth()
-     {
-         return this.borderWidth;
-     }
-
     // inner class on which to draw everything - you can add
     // to this class as much as you like
     private class DrawingPanel extends JPanel // provided
@@ -106,11 +82,31 @@ public class M257DrawingApplication extends JFrame
 
         private Picture myPicture;
 
+        private final int margin = 20;
+        private final int borderWidth = 10;
+
         // add further instance variables if required
         public DrawingPanel(int width, int height) // given
         {
             myPicture = new Picture(width, height);
             setSize(width, height);
+
+             // ----------- My Code ---------- //
+            setInitialFrameAppearance();
+            setSnakeStartPosition();
+        }
+
+        private void setInitialFrameAppearance()
+        {
+            this.setBorder(new SnakeBorder(getMargin(), getBorderWidth()));
+            this.setBackground(new Color(218, 188, 230));
+        }
+
+        private void setSnakeStartPosition()
+        {
+            int xPos = getMargin() + getBorderWidth() + 5;
+            int yPOs = xPos;
+           // myPicture.setPosition(xPos, yPos);
         }
 
         //this method is invoked automatically when repaint occurs in
@@ -130,9 +126,15 @@ public class M257DrawingApplication extends JFrame
             //TODO update state of myPicture
         }
         //TODO add further methods as required
+        private int getMargin()
+        {
+            return this.margin;
+        }
 
-
-       
+        private int getBorderWidth()
+        {
+            return this.borderWidth;
+        }
     }
     //TODO add further (inner) classes as required
 }
