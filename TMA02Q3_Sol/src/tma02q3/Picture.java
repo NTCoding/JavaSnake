@@ -160,7 +160,20 @@ public class Picture
 
     void move()
     {
+        String directon = this.getDirection();
+        
+        if (direction == UP) this.moveUp();
+        if (direction == DOWN) this.moveDown();
+    }
+
+    private void moveUp()
+    {
         this.setY(this.getY() - this.getStepDistance());
+    }
+
+    private void moveDown()
+    {
+        this.setY(this.getY() + this.getStepDistance());
     }
 
     private int getStepDistance()
@@ -191,6 +204,11 @@ public class Picture
     public void goRight()
     {
         this.setDirection(RIGHT);
+    }
+
+    private String getDirection()
+    {
+        return this.direction;
     }
 
     private void setDirection(String direction)
