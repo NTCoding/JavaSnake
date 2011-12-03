@@ -31,7 +31,7 @@ public class M257DrawingApplication extends JFrame
     /**
      * Creates a new instance of M257DrawingApplication
      */
-    public M257DrawingApplication(String title)
+    public M257DrawingApplication(String title) throws InterruptedException
     {
         super(title);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -48,10 +48,8 @@ public class M257DrawingApplication extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //TODO add registering of any event handlers here
-
-       
-
     }
+
     
     //These methods should only be called after the frame is visible.
     //They tell you about the available width and height in the frame
@@ -67,12 +65,18 @@ public class M257DrawingApplication extends JFrame
 
     //TODO complete update method
     //this method drives the application
-    public void update()
+    public void update() throws InterruptedException
     {
         //the idea here is to loop
         //and change the picture
         //this involves updating the content of the drawingPanel
         // by calling the panel's updatePictureState method
+         while(true)
+        {
+            Thread.sleep(1000);
+            drawingPanel.moveSnake();
+            repaint();
+         }
     }
 
     // inner class on which to draw everything - you can add
@@ -86,7 +90,7 @@ public class M257DrawingApplication extends JFrame
         private final int borderWidth = 10;
 
         // add further instance variables if required
-        public DrawingPanel(int width, int height) // given
+        public DrawingPanel(int width, int height) throws InterruptedException // given
         {
             myPicture = new Picture(width, height);
             setSize(width, height);
@@ -106,7 +110,12 @@ public class M257DrawingApplication extends JFrame
         {
             int xPos = getMargin() + getBorderWidth() + 40;
             int yPos = xPos;
-            myPicture.setPosition(xPos, yPos);
+            this.getSnake().setPosition(xPos, yPos);
+        }
+
+        public void moveSnake()
+        {
+            this.updatePictureState();
         }
 
         //this method is invoked automatically when repaint occurs in
@@ -124,6 +133,7 @@ public class M257DrawingApplication extends JFrame
         public void updatePictureState()
         {
             //TODO update state of myPicture
+            this.getSnake().move();
         }
         //TODO add further methods as required
         private int getMargin()
@@ -134,6 +144,11 @@ public class M257DrawingApplication extends JFrame
         private int getBorderWidth()
         {
             return this.borderWidth;
+        }
+
+        private Picture getSnake()
+        {
+            return this.myPicture;
         }
     }
     //TODO add further (inner) classes as required

@@ -31,6 +31,7 @@ public class Picture
     private final int headBaseWidth = 16;
     private int tailLength = 60;
     private int tailWidth = 6;
+    private int stepDistance = 4;
 
 
     //TODO complete constructor
@@ -126,6 +127,11 @@ public class Picture
          return this.y;
     }
 
+    private void setY(int value)
+    {
+        this.y = value;
+    }
+
     public int getHeadHeight()
     {
         return headHeight;
@@ -144,5 +150,15 @@ public class Picture
     private int getTailWidth()
     {
         return this.tailWidth;
+    }
+
+    void move()
+    {
+        this.setY(this.getY() + this.getStepDistance());
+    }
+
+    private int getStepDistance()
+    {
+        return this.stepDistance;
     }
 }
