@@ -128,6 +128,11 @@ public class Picture
         return this.x;
     }
 
+    private void setX(int x)
+    {
+        this.x = x;
+    }
+
     private int getY()
     {
          return this.y;
@@ -158,12 +163,19 @@ public class Picture
         return this.tailWidth;
     }
 
+    private int getStepDistance()
+    {
+        return this.stepDistance;
+    }
+
     void move()
     {
         String directon = this.getDirection();
         
         if (direction == UP) this.moveUp();
         if (direction == DOWN) this.moveDown();
+        if (direction == LEFT) this.moveLeft();
+        if (direction == RIGHT) this.moveRight();
     }
 
     private void moveUp()
@@ -176,9 +188,14 @@ public class Picture
         this.setY(this.getY() + this.getStepDistance());
     }
 
-    private int getStepDistance()
+    private void moveLeft()
     {
-        return this.stepDistance;
+        this.setX(this.getX() - this.getStepDistance());
+    }
+
+    private void moveRight()
+    {
+        this.setX(this.getX() + this.getStepDistance());
     }
 
     public int getTotalLength()
