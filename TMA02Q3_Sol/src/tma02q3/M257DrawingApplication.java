@@ -104,9 +104,9 @@ public class M257DrawingApplication extends JFrame
 
         private void setSnakeStartPosition()
         {
-            int xPos = getMargin() + getBorderWidth() + 5;
-            int yPOs = xPos;
-           // myPicture.setPosition(xPos, yPos);
+            int xPos = getMargin() + getBorderWidth() + 40;
+            int yPos = xPos;
+            myPicture.setPosition(xPos, yPos);
         }
 
         //this method is invoked automatically when repaint occurs in

@@ -29,8 +29,6 @@ public class SnakeBorder implements Border
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height)
     {
         Color color = new Color(70, 21, 89);
-
-        
         drawThickRectangle(g, color, getPixelWidth(), getMargin(), width, height);
     }
 
