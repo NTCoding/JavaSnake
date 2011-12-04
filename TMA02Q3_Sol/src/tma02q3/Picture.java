@@ -155,6 +155,7 @@ public class Picture
         int y = this.getY();
         int x = this.getX();
 
+        /*
         String direction = this.getDirection();
         
         if (direction.equals(UP))
@@ -173,8 +174,10 @@ public class Picture
         {
             x = this.getX() - this.getHeadHeight();
         }
+         * 
+         */
 
-        return new Point(x - 1, y);
+        return new Point(x, y);
     }
 
     private int getTailLength()
@@ -246,26 +249,26 @@ public class Picture
 
     private void moveUp()
     {
-        this.setY(this.getY() - this.getStepDistance());
         this.getTailSegments().add(UP);
+        this.setY(this.getY() - this.getStepDistance());
     }
 
     private void moveDown()
     {
-        this.setY(this.getY() + this.getStepDistance());
         this.getTailSegments().add(DOWN);
+        this.setY(this.getY() + this.getStepDistance());
     }
 
     private void moveLeft()
     {
-        this.setX(this.getX() - this.getStepDistance());
         this.getTailSegments().add(LEFT);
+        this.setX(this.getX() - this.getStepDistance());
     }
 
     private void moveRight()
     {
-        this.setX(this.getX() + this.getStepDistance());
         this.getTailSegments().add(RIGHT);
+        this.setX(this.getX() + this.getStepDistance());
     }
 
     public int getTotalLength()

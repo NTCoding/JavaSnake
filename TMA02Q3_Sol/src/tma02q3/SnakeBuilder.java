@@ -22,10 +22,10 @@ public class SnakeBuilder
     {
         Polygon head = new Polygon();
         head.addPoint(x, y);
-        head.addPoint(x - headTipWidth, y);
-        head.addPoint(x - headBaseWidth, y + headHeight);
-        head.addPoint(x + headBaseWidth, y + headHeight);
-        head.addPoint(x + headTipWidth, y);
+        head.addPoint(x - headBaseWidth, y);
+        head.addPoint(x - headTipWidth, y - headHeight);
+        head.addPoint(x + headTipWidth, y - headHeight);
+        head.addPoint(x + headBaseWidth, y);
 
         return head;
     }
@@ -34,10 +34,10 @@ public class SnakeBuilder
     {
         Polygon head = new Polygon();
         head.addPoint(x, y);
-        head.addPoint(x - headTipWidth, y);
-        head.addPoint(x - headBaseWidth, y - headHeight);
-        head.addPoint(x + headBaseWidth, y - headHeight);
-        head.addPoint(x + headTipWidth, y);
+        head.addPoint(x - headBaseWidth, y);
+        head.addPoint(x - headTipWidth, y + headHeight);
+        head.addPoint(x + headTipWidth, y + headHeight);
+        head.addPoint(x + headBaseWidth, y);
 
         return head;
     }
@@ -46,10 +46,10 @@ public class SnakeBuilder
     {
         Polygon head = new Polygon();
         head.addPoint(x, y);
-        head.addPoint(x, y - headTipWidth);
-        head.addPoint(x + headHeight, y - headBaseWidth);
-        head.addPoint(x + headHeight, y + headBaseWidth);
-        head.addPoint(x, y + headTipWidth);
+        head.addPoint(x, y - headBaseWidth);
+        head.addPoint(x - headHeight, y - headTipWidth);
+        head.addPoint(x - headHeight, y + headTipWidth);
+        head.addPoint(x, y + headBaseWidth);
 
         return head;
     }
@@ -58,10 +58,10 @@ public class SnakeBuilder
     {
         Polygon head = new Polygon();
         head.addPoint(x, y);
-        head.addPoint(x, y - headTipWidth);
-        head.addPoint(x - headHeight, y - headBaseWidth);
-        head.addPoint(x - headHeight, y + headBaseWidth);
-        head.addPoint(x, y + headTipWidth);
+        head.addPoint(x, y - headBaseWidth);
+        head.addPoint(x + headHeight, y - headTipWidth);
+        head.addPoint(x + headHeight, y + headTipWidth);
+        head.addPoint(x, y + headBaseWidth);
 
         return head;
     }
