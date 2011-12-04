@@ -13,6 +13,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -38,7 +41,10 @@ public class Picture
     private final String LEFT = "left";
     private final String RIGHT = "right";
 
+    private final int STARTING_TAIL_LENGTH = 10;
+
     private String direction = UP;
+    private List<String> tailSegments = new ArrayList<String>() {};
 
     SnakeBuilder builder = new SnakeBuilder();
 
@@ -49,6 +55,15 @@ public class Picture
         this.height = height;
 
         //TODO complete
+        setUpTailSegments();
+    }
+
+    private void setUpTailSegments()
+    {
+        for (int i= 0; i < STARTING_TAIL_LENGTH; i++)
+        {
+            tailSegments.add(UP);
+        }
     }
 
     //TODO add updatePictureState method
@@ -88,6 +103,14 @@ public class Picture
         {
             head = builder.getDownwardFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
         }
+        if (this.getDirection().equals(LEFT))
+        {
+            head = builder.getLeftFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
+        }
+        if (this.getDirection().equals(RIGHT))
+        {
+            head = builder.getRightFacingHead(x, y, headTipWidth, headBaseWidth, headHeight);
+        }
 
         g.fillPolygon(head);
 
@@ -96,26 +119,36 @@ public class Picture
 
     private Polygon getSnakeTail(Graphics g)
     {
-        Point startPoint = getCentreOfBaseOfHead();
-        int tailWidth = this.getTailWidth();
-        int halfTailWidth = this.getTailWidth() / 2;
+        Point startPoint = this.getCentreOfBaseOfHead();
 
-        Polygon tail = null;
-        if (this.getDirection().equals(UP))
-        {
-           tail = this.getSnakeBuilder().getForwardsTail(startPoint, halfTailWidth, tailWidth, this.getTailLength());
-        }
-
-        g.fillPolygon(tail);
-
-        return tail;
+        return this.getSnakeBuilder().buildTail(this.getTailSegments(), startPoint, stepDistance);
     }
 
     private Point getCentreOfBaseOfHead()
     {
-        int y = this.getY() + this.getHeadHeight();
+        int y = this.getY();
+        int x = this.getX();
 
-        return new Point(this.getX() - 1, y);
+        String direction = this.getDirection();
+        
+        if (direction.equals(UP))
+        {
+            y = this.getY() + this.getHeadHeight();
+        }
+        if (direction.equals(DOWN))
+        {
+            y = this.getY() - this.getHeadHeight();
+        }
+        if (direction.equals(LEFT))
+        {
+            x = this.getX() + this.getHeadHeight();
+        }
+        if (direction.equals(RIGHT))
+        {
+            x = this.getX() - this.getHeadHeight();
+        }
+
+        return new Point(x - 1, y);
     }
 
     private int getTailLength()
@@ -243,5 +276,10 @@ public class Picture
     private SnakeBuilder getSnakeBuilder()
     {
         return this.builder;
+    }
+
+    private List<String> getTailSegments()
+    {
+        return this.tailSegments;
     }
 }

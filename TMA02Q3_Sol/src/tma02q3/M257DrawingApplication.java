@@ -76,7 +76,7 @@ public class M257DrawingApplication extends JFrame
         // by calling the panel's updatePictureState method
         while(true)
         {
-            Thread.sleep(1000);
+            Thread.sleep(500);
             drawingPanel.moveSnake();
             repaint();
          }
