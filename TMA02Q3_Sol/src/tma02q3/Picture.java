@@ -30,8 +30,8 @@ public class Picture
     private int x = 0;
     private int y = 0;
     private final int headHeight = 24;
-    private final int headTipWidth = 8;
-    private final int headBaseWidth = 16;
+    private final int headTipWidth = 6;
+    private final int headBaseWidth = 10;
     private int tailLength = 60;
     private int tailWidth = 6;
     private int stepDistance = 4;
@@ -296,7 +296,7 @@ public class Picture
         this.setDirection(RIGHT);
     }
 
-    private String getDirection()
+    public String getDirection()
     {
         return this.direction;
     }
@@ -316,5 +316,9 @@ public class Picture
         return this.tailSegments;
     }
 
+    public Point getPosition()
+    {
+        return new Point(this.getX(), this.getY());
+    }
 
 }

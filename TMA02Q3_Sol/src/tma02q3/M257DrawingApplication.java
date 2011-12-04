@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -76,10 +77,32 @@ public class M257DrawingApplication extends JFrame
         // by calling the panel's updatePictureState method
         while(true)
         {
-            Thread.sleep(500);
-            drawingPanel.moveSnake();
+            Thread.sleep(100);
+
+            if (this.hasOutOfBoundsSnake())
+            {
+                drawingPanel.startNewGame();
+            }
+            else
+            {
+                drawingPanel.moveSnake();
+            }
             repaint();
          }
+    }
+
+    private boolean hasOutOfBoundsSnake()
+    {
+        // get the inner extents of the border
+        int minX = 0 + drawingPanel.getMargin() + drawingPanel.getBorderWidth();
+        int maxX = minX + (drawingPanel.getWidth() - (drawingPanel.getMargin() * 2) - (drawingPanel.getBorderWidth() * 2));
+
+        int minY = minX;
+        int maxY = minY + (drawingPanel.getHeight() - (drawingPanel.getMargin() * 2) - (drawingPanel.getBorderWidth() * 2));
+
+        Point headPosition = drawingPanel.getSnakeHeadPosition();
+
+        return  headPosition.x < minX || headPosition.x > maxX || headPosition.y < minY || headPosition.y > maxY;
     }
 
     // inner class on which to draw everything - you can add
@@ -98,7 +121,11 @@ public class M257DrawingApplication extends JFrame
             myPicture = new Picture(width, height);
             setSize(width, height);
 
-             // ----------- My Code ---------- //
+            startNewGame();
+        }
+
+        public void startNewGame()
+        {
             setInitialFrameAppearance();
             setSnakeStartPosition();
         }
@@ -139,12 +166,12 @@ public class M257DrawingApplication extends JFrame
             this.getSnake().move();
         }
         //TODO add further methods as required
-        private int getMargin()
+        public int getMargin()
         {
             return this.margin;
         }
 
-        private int getBorderWidth()
+        public int getBorderWidth()
         {
             return this.borderWidth;
         }
@@ -152,6 +179,32 @@ public class M257DrawingApplication extends JFrame
         private Picture getSnake()
         {
             return this.myPicture;
+        }
+
+        private Point getSnakeHeadPosition()
+        {
+            String direction = this.getSnake().getDirection();
+            Point position = this.getSnake().getPosition();
+            int headHeight = this.getSnake().getHeadHeight();
+
+            if (direction.equals("up"))
+            {
+                return new Point(position.x, position.y - headHeight);
+            }
+            if (direction.equals("down"))
+            {
+                return new Point(position.x, position.y + headHeight);
+            }
+            if (direction.equals("left"))
+            {
+                return new Point(position.x - headHeight, position.y);
+            }
+            if (direction.equals("right"))
+            {
+                return new Point(position.x + headHeight, position.y);
+            }
+
+            return null;
         }
     }
     //TODO add further (inner) classes as required
