@@ -81,11 +81,12 @@ public class M257DrawingApplication extends JFrame
 
             if (this.hasOutOfBoundsSnake() || drawingPanel.hasTailCollision())
             {
+                Thread.sleep(2000);
                 drawingPanel.startNewGame();
             }
             else
             {
-                drawingPanel.moveSnake();
+                drawingPanel.updatePictureState();
             }
             repaint();
          }
@@ -142,11 +143,6 @@ public class M257DrawingApplication extends JFrame
             int xPos =  this.getMargin() + this.getBorderWidth() + 40;
             int yPos = this.getHeight() - this.getMargin() - this.getBorderWidth() - this.getSnake().getTotalLength() - 5;
             this.getSnake().setPosition(xPos, yPos);
-        }
-
-        public void moveSnake()
-        {
-            this.updatePictureState();
         }
 
         //this method is invoked automatically when repaint occurs in
