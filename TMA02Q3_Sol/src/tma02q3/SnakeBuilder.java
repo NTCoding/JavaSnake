@@ -72,7 +72,7 @@ public class SnakeBuilder
 
         tail.add(startPoint);
 
-        for(String segment: tailSegments)
+        for(String segment: this.getTailFrontFirst(tailSegments))
         {
             if (segment.equals("up")) this.addDownPoint(tail, segmentLength);
             if (segment.equals("down")) this.addUpPoint(tail, segmentLength);
@@ -81,6 +81,18 @@ public class SnakeBuilder
         }
 
         return tail;
+    }
+
+    private Iterable<String> getTailFrontFirst(List<String> tailSegments)
+    {
+        List<String> reversed = new ArrayList<String>();
+
+        for (int i = tailSegments.size() - 1; i >= 0; i--)
+        {
+            reversed.add(tailSegments.get(i));
+        }
+
+        return reversed;
     }
 
     private void addDownPoint(List<Point> tail, int segmentLength)
@@ -111,4 +123,6 @@ public class SnakeBuilder
     {
        return tail.get(tail.size() - 1);
     }
+
+
 }
