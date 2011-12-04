@@ -221,21 +221,25 @@ public class Picture
     private void moveUp()
     {
         this.setY(this.getY() - this.getStepDistance());
+        this.getTailSegments().add(UP);
     }
 
     private void moveDown()
     {
         this.setY(this.getY() + this.getStepDistance());
+        this.getTailSegments().add(DOWN);
     }
 
     private void moveLeft()
     {
         this.setX(this.getX() - this.getStepDistance());
+        this.getTailSegments().add(LEFT);
     }
 
     private void moveRight()
     {
         this.setX(this.getX() + this.getStepDistance());
+        this.getTailSegments().add(RIGHT);
     }
 
     public int getTotalLength()
