@@ -52,6 +52,7 @@ public class M257DrawingApplication extends JFrame
 
         //TODO add registering of any event handlers here
         this.addKeyListener(new KeyListener(drawingPanel.getSnake()));
+        this.addWindowListener(new QuitHandler());
     }
 
     
@@ -220,7 +221,6 @@ public class M257DrawingApplication extends JFrame
         }
     }
     //TODO add further (inner) classes as required
-
     private class KeyListener extends KeyAdapter
     {
         private Picture snake;
@@ -251,6 +251,11 @@ public class M257DrawingApplication extends JFrame
             if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             {
                 this.getSnake().goRight();
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            {
+                System.exit(0);
             }
         }
 
