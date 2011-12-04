@@ -81,7 +81,33 @@ public class Picture
         //TODO complete
         g.setColor(Color.DARK_GRAY);
         g.drawPolygon(getSnakeHead(g));
-        g.drawPolygon(getSnakeTail(g));
+
+        List<Point> tail = this.getSnakeTail();
+        g.drawPolyline(this.getXPoints(tail), this.getYPoints(tail), tail.size());
+    }
+
+    private int[] getXPoints(List<Point> points)
+    {
+        int[] xPoints = new int[points.size()];
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            xPoints[i] = points.get(i).x;
+        }
+
+        return xPoints;
+    }
+
+    private int[] getYPoints(List<Point> points)
+    {
+        int[] yPoints = new int[points.size()];
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            yPoints[i] = points.get(i).y;
+        }
+
+        return yPoints;
     }
 
     private Polygon getSnakeHead(Graphics g)
@@ -117,7 +143,7 @@ public class Picture
         return head;
     }
 
-    private Polygon getSnakeTail(Graphics g)
+    private List<Point> getSnakeTail()
     {
         Point startPoint = this.getCentreOfBaseOfHead();
 
@@ -286,4 +312,6 @@ public class Picture
     {
         return this.tailSegments;
     }
+
+
 }

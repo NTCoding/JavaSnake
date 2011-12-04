@@ -66,11 +66,11 @@ public class SnakeBuilder
         return head;
     }
 
-    public Polygon buildTail(List<String> tailSegments, Point startPoint, int segmentLength)
+    public List<Point> buildTail(List<String> tailSegments, Point startPoint, int segmentLength)
     {
-        Polygon tail = new Polygon();
+        List<Point> tail = new ArrayList<Point>();
 
-        tail.addPoint(startPoint.x, startPoint.y);
+        tail.add(startPoint);
 
         for(String segment: tailSegments)
         {
@@ -83,35 +83,32 @@ public class SnakeBuilder
         return tail;
     }
 
-    private void addDownPoint(Polygon tail, int segmentLength)
+    private void addDownPoint(List<Point> tail, int segmentLength)
     {
         Point lastPoint = this.getLastPoint(tail);
-        tail.addPoint(lastPoint.x, lastPoint.y + segmentLength);
+        tail.add(new Point(lastPoint.x, lastPoint.y + segmentLength));
     }
 
-    private void addUpPoint(Polygon tail, int segmentLength)
+    private void addUpPoint(List<Point> tail, int segmentLength)
     {
         Point lastPoint = this.getLastPoint(tail);
-        tail.addPoint(lastPoint.x, lastPoint.y - segmentLength);
+        tail.add(new Point(lastPoint.x, lastPoint.y - segmentLength));
     }
 
-    private void addRightPoint(Polygon tail, int segmentLength)
+    private void addRightPoint(List<Point> tail, int segmentLength)
     {
         Point lastPoint = this.getLastPoint(tail);
-        tail.addPoint(lastPoint.x + segmentLength, lastPoint.y);
+        tail.add(new Point(lastPoint.x + segmentLength, lastPoint.y));
     }
 
-    private void addLeftPoint(Polygon tail, int segmentLength)
+    private void addLeftPoint(List<Point> tail, int segmentLength)
     {
         Point lastPoint = this.getLastPoint(tail);
-        tail.addPoint(lastPoint.x - segmentLength, lastPoint.y);
+        tail.add(new Point(lastPoint.x - segmentLength, lastPoint.y));
     }
 
-    private Point getLastPoint(Polygon tail)
+    private Point getLastPoint(List<Point> tail)
     {
-        int x = tail.xpoints[tail.npoints - 1];
-        int y = tail.ypoints[tail.npoints - 1];
-
-        return new Point(x, y);
+       return tail.get(tail.size() - 1);
     }
 }
