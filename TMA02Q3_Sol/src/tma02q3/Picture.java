@@ -86,6 +86,8 @@ public class Picture
         g.drawPolyline(this.getXPoints(tail), this.getYPoints(tail), tail.size());
     }
 
+
+
     private int[] getXPoints(List<Point> points)
     {
         int[] xPoints = new int[points.size()];
@@ -143,7 +145,7 @@ public class Picture
         return head;
     }
 
-    private List<Point> getSnakeTail()
+    public List<Point> getSnakeTail()
     {
         Point startPoint = this.getCentreOfBaseOfHead();
 
@@ -154,28 +156,6 @@ public class Picture
     {
         int y = this.getY();
         int x = this.getX();
-
-        /*
-        String direction = this.getDirection();
-        
-        if (direction.equals(UP))
-        {
-            y = this.getY() + this.getHeadHeight();
-        }
-        if (direction.equals(DOWN))
-        {
-            y = this.getY() - this.getHeadHeight();
-        }
-        if (direction.equals(LEFT))
-        {
-            x = this.getX() + this.getHeadHeight();
-        }
-        if (direction.equals(RIGHT))
-        {
-            x = this.getX() - this.getHeadHeight();
-        }
-         * 
-         */
 
         return new Point(x, y);
     }
@@ -319,6 +299,13 @@ public class Picture
     public Point getPosition()
     {
         return new Point(this.getX(), this.getY());
+    }
+
+    public void reset()
+    {
+        this.goUp();
+        this.getTailSegments().clear();
+        this.setUpTailSegments();
     }
 
 }

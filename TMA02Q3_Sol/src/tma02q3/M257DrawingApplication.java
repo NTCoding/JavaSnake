@@ -79,7 +79,7 @@ public class M257DrawingApplication extends JFrame
         {
             Thread.sleep(100);
 
-            if (this.hasOutOfBoundsSnake())
+            if (this.hasOutOfBoundsSnake() || drawingPanel.hasTailCollision())
             {
                 drawingPanel.startNewGame();
             }
@@ -127,6 +127,7 @@ public class M257DrawingApplication extends JFrame
         public void startNewGame()
         {
             setInitialFrameAppearance();
+            this.getSnake().reset();
             setSnakeStartPosition();
         }
 
@@ -205,6 +206,21 @@ public class M257DrawingApplication extends JFrame
             }
 
             return null;
+        }
+
+        private boolean hasTailCollision()
+        {
+            Point currentPosition = this.getSnakeHeadPosition();
+
+            for(Point point: this.getSnake().getSnakeTail())
+            {
+                if (point.x == currentPosition.x && point.y == currentPosition.y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
     //TODO add further (inner) classes as required
